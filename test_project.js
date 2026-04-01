@@ -73,3 +73,4 @@ console.log("Nombre de mots uniques :", Object.keys(occurrences).length);
 
 createJsonFile(normalizedOccurrences, "dictionnaire.json");
 
+//test3
