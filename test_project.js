@@ -1,9 +1,9 @@
 import fs from "fs";
 
-// 1) Lire le fichier brut
+// 1) Lire le fichier
 const rawText = fs.readFileSync("conte.txt", "utf-8");
 
-// 2) Supprimer header/footer Gutenberg
+// 2) Supprimer info nulles Gutenberg
 const removeGutenbergHeader = (texte) => {
 	const start = texte.indexOf("*** START");
 	const end = texte.indexOf("*** END");
@@ -14,7 +14,6 @@ const removeGutenbergHeader = (texte) => {
 	return texte;
 };
 
-// 👉 ICI on nettoie
 const texte = removeGutenbergHeader(rawText);
 
 // 2) Nettoyer le texte
@@ -74,4 +73,3 @@ console.log("Nombre de mots uniques :", Object.keys(occurrences).length);
 
 createJsonFile(normalizedOccurrences, "dictionnaire.json");
 
-//test
