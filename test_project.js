@@ -1,4 +1,5 @@
 import fs from "fs";
+import * as R from "ramda"; // npm i ramda --save
 
 // 1) Lire le fichier
 const rawText = fs.readFileSync("conte.txt", "utf-8");
@@ -14,63 +15,55 @@ const removeGutenbergHeader = (texte) => {
 	return texte;
 };
 
-const texte = removeGutenbergHeader(rawText);
-
 // 2) Nettoyer le texte
-const cleanText = (texte) => {
-	return texte
-		.toLowerCase()
-		.replace(/\n/g, " ")
-		.replace(/[.,!?;:()«»"]/g, "")
-		.replace(/[’']/g, " ")
-		.replace(/[^a-zàâäéèêëîïôöùûüçœæ\s]/gi, "")
-		.split(/\s+/)
-		.filter(Boolean);
-};
+const cleanText = R.pipe(
+    (texte) => texte.toLowerCase(),
+    R.replace(/\n/g, " "),
+    R.replace(/[.,!?;:()«»"]/g, ""),
+    R.replace(/['']/g, " "),
+    R.replace(/[^a-zàâäéèêëîïôöùûüçœæ\s]/gi, ""),
+    R.split(/\s+/),
+    R.filter(Boolean),
+);
 
 // 3) Compter les occurrences
-const countWords = (words) => {
-	const occurrences = {};
-
-	for (const word of words) {
-		occurrences[word] = (occurrences[word] || 0) + 1;
-	}
-
-	return occurrences;
-};
+const countWords = R.reduce(
+    (acc, word) => ({
+        ...acc,
+        [word]: (acc[word] || 0) + 1,
+    }),
+    {},
+);
 
 // 4) Normaliser entre 0 et 1
 const normalizeOccurrences = (occurrences) => {
-	const totalWords = Object.values(occurrences).reduce(
-		(sum, count) => sum + count,
-		0,
-	);
+    const total = R.pipe(
+        Object.values,
+        R.sum,
+    )(occurrences);
 
-	const normalized = {};
-
-	for (const word in occurrences) {
-		normalized[word] = Number(
-			(occurrences[word] / totalWords).toFixed(5),
-			//((occurrences[word] / totalWords) * 100).toFixed(2),
-		);
-	}
-
-	return normalized;
+    return R.map(
+        (count) => Number((count / total).toFixed(5)),
+        occurrences,
+    );
 };
 
 // 5) Créer le fichier JSON
-const createJsonFile = (data, fileName) => {
-	fs.writeFileSync(fileName, JSON.stringify(data, null, 2), "utf-8");
+const createJsonFile = (fileName) => (data) => {
+    fs.writeFileSync(fileName, JSON.stringify(data, null, 2), "utf-8");
+    return data;
 };
 
 // Exécution
-const words = cleanText(texte);
+const words = R.pipe(
+    removeGutenbergHeader,
+    cleanText,
+)(rawText);
+
 const occurrences = countWords(words);
 const normalizedOccurrences = normalizeOccurrences(occurrences);
 
 console.log("Nombre de mots :", words.length);
 console.log("Nombre de mots uniques :", Object.keys(occurrences).length);
 
-createJsonFile(normalizedOccurrences, "dictionnaire.json");
-
-//test3
+createJsonFile("dictionnaire.json")(normalizedOccurrences);
