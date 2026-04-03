@@ -17,7 +17,7 @@ const removeGutenbergHeader = (texte) => {
 
 // 2) Nettoyer le texte
 const cleanText = R.pipe(
-    (texte) => texte.toLowerCase(),
+    R.toLower,
     R.replace(/\n/g, " "),
     R.replace(/[.,!?;:()«»"]/g, ""),
     R.replace(/['']/g, " "),
@@ -27,13 +27,7 @@ const cleanText = R.pipe(
 );
 
 // 3) Compter les occurrences
-const countWords = R.reduce(
-    (acc, word) => ({
-        ...acc,
-        [word]: (acc[word] || 0) + 1,
-    }),
-    {},
-);
+const countWords = R.countBy(R.identity);
 
 // 4) Normaliser entre 0 et 1
 const normalizeOccurrences = (occurrences) => {
