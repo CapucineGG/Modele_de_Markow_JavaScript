@@ -2,7 +2,7 @@ import fs from "fs";
 import * as R from "ramda"; // npm i ramda --save
 
 // 1) Lire le fichier
-const rawText = fs.readFileSync("conte.txt", "utf-8");
+const rawText = fs.readFileSync("data/conte.txt", "utf-8");
 
 // 2) Supprimer info nulles Gutenberg
 const removeGutenbergHeader = (texte) => {
@@ -60,4 +60,4 @@ const normalizedOccurrences = normalizeOccurrences(occurrences);
 console.log("Nombre de mots :", words.length);
 console.log("Nombre de mots uniques :", Object.keys(occurrences).length);
 
-createJsonFile("dictionnaire.json")(normalizedOccurrences);
+createJsonFile("data/dictionnaire.json")(normalizedOccurrences);

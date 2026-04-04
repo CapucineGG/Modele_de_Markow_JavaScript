@@ -1,7 +1,7 @@
 {
   "type": "module",
   "scripts": {
-    "start": "node creation_dic.js"
+    "start": "node src/creation_dic.js"
   },
   "dependencies": {
     "ramda": "^0.32.0"
