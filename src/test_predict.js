@@ -1,5 +1,5 @@
 import * as R from "ramda";
-import predictions from "./data/predictions.json" with { type: "json" };
+import predictions from "../data/predictions.json" with { type: "json" };
 
 const predictNextWord = (word, n = 5) =>
 	R.pipe(

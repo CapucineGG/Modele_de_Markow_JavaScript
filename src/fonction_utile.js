@@ -1,3 +1,4 @@
+import fs from "fs";
 import * as R from "ramda";
 
 const removeGutenbergHeader = (texte) => {
@@ -20,4 +21,9 @@ const cleanText = R.pipe(
 	R.filter(Boolean),
 );
 
-export { cleanText, removeGutenbergHeader };
+const createJsonFile = R.curry((fileName, data) => {
+	fs.writeFileSync(fileName, JSON.stringify(data, null, 2), "utf-8");
+	return data;
+});
+
+export { cleanText, createJsonFile, removeGutenbergHeader };
