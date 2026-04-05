@@ -1,5 +1,5 @@
 import * as R from "ramda";
-import dictionnaire from "../data/dictionnaire.json" with { type: "json" };
+import dictionnaire from "./data/dictionnaire.json" with { type: "json" };
 
 const predict = (prefix, n = 5) => R.pipe(
   Object.entries,
