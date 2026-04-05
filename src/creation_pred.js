@@ -31,7 +31,7 @@ const buildPredictions = (words) => {
 
 const normalizePredictions = R.map((nextWords) => {
 	const total = R.sum(Object.values(nextWords));
-	return R.map((count) => Number((count / total).toFixed(5)), nextWords);
+	return R.map((count) => Number((count / total).toFixed(6)), nextWords);
 });
 
 const words = cleanText(rawText);

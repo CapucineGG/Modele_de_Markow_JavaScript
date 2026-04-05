@@ -26,7 +26,7 @@ const countWords = R.countBy(R.identity);
 const normalizeOccurrences = (occurrences) => {
 	const total = R.pipe(Object.values, R.sum)(occurrences);
 
-	return R.map((count) => Number((count / total).toFixed(5)), occurrences);
+	return R.map((count) => Number((count / total).toFixed(6)), occurrences);
 };
 
 // 4) Exécution
