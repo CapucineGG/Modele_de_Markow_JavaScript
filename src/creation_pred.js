@@ -7,9 +7,9 @@ import {
 } from "./fonction_utile.js";
 
 const files = [
-	"../data/conte.txt",
-	"../data/fables_de_la_fontaines.txt",
-	"../data/maupassant.txt",
+	"./data/conte.txt",
+	"./data/fables_de_la_fontaines.txt",
+	"./data/maupassant.txt",
 ];
 
 const rawText = R.pipe(
@@ -31,7 +31,7 @@ const buildPredictions = (words) => {
 
 const normalizePredictions = R.map((nextWords) => {
 	const total = R.sum(Object.values(nextWords));
-	return R.map((count) => Number((count / total).toFixed(6)), nextWords);
+	return R.map((count) => Number(count / total), nextWords);
 });
 
 const words = cleanText(rawText);
@@ -39,4 +39,4 @@ const predictions = buildPredictions(words);
 
 console.log("Nombre de prédictions :", Object.keys(predictions).length);
 
-createJsonFile("../data/predictions.json")(normalizePredictions(predictions));
+createJsonFile("./data/predictions.json")(normalizePredictions(predictions));

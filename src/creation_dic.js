@@ -8,9 +8,9 @@ import {
 
 // 1) Lire le fichier
 const files = [
-	"../data/conte.txt",
-	"../data/fables_de_la_fontaines.txt",
-	"../data/maupassant.txt",
+	"./data/conte.txt",
+	"./data/fables_de_la_fontaines.txt",
+	"./data/maupassant.txt",
 ];
 
 const rawText = R.pipe(
@@ -26,7 +26,7 @@ const countWords = R.countBy(R.identity);
 const normalizeOccurrences = (occurrences) => {
 	const total = R.pipe(Object.values, R.sum)(occurrences);
 
-	return R.map((count) => Number((count / total).toFixed(6)), occurrences);
+	return R.map((count) => Number(count / total), occurrences);
 };
 
 // 4) Exécution
@@ -38,4 +38,4 @@ const normalizedOccurrences = normalizeOccurrences(occurrences);
 console.log("Nombre de mots :", words.length);
 console.log("Nombre de mots uniques :", Object.keys(occurrences).length);
 
-createJsonFile("../data/dictionnaire.json")(normalizedOccurrences);
+createJsonFile("./data/dictionnaire.json")(normalizedOccurrences);
