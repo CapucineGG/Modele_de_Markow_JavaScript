@@ -13,7 +13,7 @@ Ce projet implémente un modèle de Markov de premier ordre entraîné sur un co
 
 ```bash
 npm run dic # Génère dictionnaire.json
-npm run predictions  # Génère predictions.json
+npm run pred  # Génère predictions.json
 ```
 
 ### Tester les modèles

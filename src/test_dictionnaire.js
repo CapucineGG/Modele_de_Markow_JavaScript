@@ -10,6 +10,12 @@ const predict = (prefix, n = 5) =>
 		R.map(([word, freq]) => ({ word, freq })),
 	)(dictionnaire);
 
-console.log(predict("bea"));
-console.log(predict("ma"));
-console.log(predict("par"));
+const displayPrediction = (prefix) => {
+	console.log(`Début de mot '${prefix}' :`);
+	console.log(predict(prefix));
+	console.log();
+};
+
+displayPrediction("bea");
+displayPrediction("ma");
+displayPrediction("par");

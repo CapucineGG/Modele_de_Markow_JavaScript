@@ -16,6 +16,12 @@ const predictNextWord = (word, n = 5) =>
 		),
 	)(predictions);
 
-console.log(predictNextWord("il"));
-console.log(predictNextWord("elle"));
-console.log(predictNextWord("grand"));
+const displayPrediction = (word) => {
+	console.log(`Mot '${word}' :`);
+	console.log(predictNextWord(word));
+	console.log();
+};
+
+displayPrediction("il");
+displayPrediction("manger");
+displayPrediction("pour");

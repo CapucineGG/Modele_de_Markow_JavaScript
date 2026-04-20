@@ -2,7 +2,7 @@
 	"type": "module",
 	"scripts": {
 		"dic": "node src/creation_dic.js",
-		"predictions": "node src/creation_pred.js",
+		"pred": "node src/creation_pred.js",
 		"testdic": "node src/test_dictionnaire.js",
 		"testpred": "node src/test_predict.js"
 	},
