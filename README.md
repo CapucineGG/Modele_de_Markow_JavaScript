@@ -27,16 +27,15 @@ npm run testpred # Lance les scripts de test prediction
 
 ### Dictionnaire de fréquences (`dictionnaire.json`)
 
-création d'un dictionnaire à partir de tous les mots du corpus.
+Création d'un dictionnaire à partir de tous les mots du corpus.
 Chaque mot est associé à une fréquence (entre 0 et 1) qui indique à quel point il apparaît souvent dans les textes.
-Pour ça, on utilise R.countBy.
 
 ### Modèle de Markov (`predictions.json`)
 
 Pour chaque mot, on regarde quels mots peuvent venir juste après dans les textes.
 On enregistre ces mots avec leur fréquence (normalisée entre 0 et 1).
 
-On utilise une boucle for classique pour construire le dictionnaire, car c’est beaucoup plus rapide que certaines méthodes fonctionnelles (comme R.reduce avec le spread operator) sur de gros volumes de données.
+On utilise une boucle for classique pour construire le dictionnaire, car c’est beaucoup plus rapide que Ramda sur de gros volumes de données.
 
 ### Nettoyage du texte
 
