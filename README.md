@@ -25,12 +25,12 @@ npm run testpred # Lance les scripts de test prediction
 
 ## Détails techniques
 
-### Dictionnaire de fréquences (`dictionnaire.json`)
+### Dictionnaire de fréquences (dictionnaire.json)
 
 Création d'un dictionnaire à partir de tous les mots du corpus.
 Chaque mot est associé à une fréquence (entre 0 et 1) qui indique à quel point il apparaît souvent dans les textes.
 
-### Modèle de Markov (`predictions.json`)
+### Modèle de Markov (predictions.json)
 
 Pour chaque mot, on regarde quels mots peuvent venir juste après dans les textes.
 On enregistre ces mots avec leur fréquence (normalisée entre 0 et 1).
