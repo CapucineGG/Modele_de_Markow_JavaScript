@@ -2,7 +2,7 @@
 
 ## Description
 
-Ce projet implémente un système de prédiction de mots entraîné sur un corpus de textes littéraires français (contes, fables de La Fontaine, nouvelles de Maupassant).
+Ce projet implémente un système de prédiction de mots entraîné sur un corpus de textes littéraires français (Gutenberg).
 
 Il propose trois modes de prédiction :
 
