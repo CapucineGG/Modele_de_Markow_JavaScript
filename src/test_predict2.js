@@ -22,6 +22,6 @@ const displayPrediction = (word1, word2) => {
 	console.log();
 };
 
-displayPrediction("il", "était");
+displayPrediction("il", "est");
 displayPrediction("je", "vais");
 displayPrediction("de", "la");
