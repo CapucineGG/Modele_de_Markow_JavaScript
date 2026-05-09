@@ -15,7 +15,7 @@ const cleanText = R.pipe(
 	R.toLower,
 	R.replace(/\n/g, " "),
 	R.replace(/[.,!?;:()«»"]/g, ""),
-	R.replace(/'/g, " "),
+	R.replace(/['-]/g, " "),
 	R.replace(/[^a-zàâäéèêëîïôöùûüçœæ\s]/gi, ""),
 	R.split(/\s+/),
 	R.filter(Boolean),

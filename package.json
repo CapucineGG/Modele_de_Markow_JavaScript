@@ -3,8 +3,10 @@
 	"scripts": {
 		"dic": "node src/creation_dic.js",
 		"pred": "node src/creation_pred.js",
+		"pred2": "node src/creation_pred2.js",
 		"testdic": "node src/test_dictionnaire.js",
-		"testpred": "node src/test_predict.js"
+		"testpred": "node src/test_predict.js",
+		"testpred2": "node src/test_predict2.js"
 	},
 	"dependencies": {
 		"ramda": "^0.32.0"

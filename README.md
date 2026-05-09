@@ -2,25 +2,30 @@
 
 ## Description
 
-Ce projet implémente un modèle de Markov de premier ordre entraîné sur un corpus de textes littéraires français (contes, fables). Il permet deux types de prédiction :
+Ce projet implémente un système de prédiction de mots entraîné sur un corpus de textes littéraires français (contes, fables de La Fontaine, nouvelles de Maupassant).
 
-- Compléter le mot : suggère les mots les plus fréquents correspondant à un préfixe saisi
-- Prédiction du mot suivant : prédit les mots les plus probables après un mot donné
+Il propose trois modes de prédiction :
+
+- Compléter le mot : suggère les mots les plus fréquents qui commencent par les lettres saisies
+- Prédire le mot suivant (Markov ordre 1) : à partir d'un seul mot, prédit les mots les plus probables qui viennent juste après dans les textes
+- Prédire le mot suivant avec contexte (Markov ordre 2) : à partir de deux mots consécutifs, prédit le mot suivant le plus probable : ce mode donne des résultats plus cohérents car il prend en compte le contexte
 
 ## Utilisation
 
-### Générer les fichiers de données
+### 1. Générer les fichiers de données
 
 ```bash
 npm run dic # Génère dictionnaire.json
 npm run pred  # Génère predictions.json
+npm run pred2 #Génère predictions2.json
 ```
 
-### Tester les modèles
+### 2. Tester les modèles
 
 ```bash
-npm run testdic # Lance les scripts de test dictionnaire
-npm run testpred # Lance les scripts de test prediction
+npm run testdic # Lance le script de test dictionnaire
+npm run testpred # Lance le script de test prediction
+npm run testpred2 #Lance le script de test prediction 2
 ```
 
 ## Détails techniques
@@ -30,13 +35,22 @@ npm run testpred # Lance les scripts de test prediction
 Création d'un dictionnaire à partir de tous les mots du corpus.
 Chaque mot est associé à une fréquence (entre 0 et 1) qui indique à quel point il apparaît souvent dans les textes.
 
-### Modèle de Markov (predictions.json)
+### Modèle de Markov : ordre 1 (predictions.json)
 
 Pour chaque mot, on regarde quels mots peuvent venir juste après dans les textes.
 On enregistre ces mots avec leur fréquence (normalisée entre 0 et 1).
 
 On utilise une boucle for classique pour construire le dictionnaire, car c’est beaucoup plus rapide que Ramda sur de gros volumes de données.
 
+### Modèle de Markov : ordre 2 (predictions2.json)
+
+Pour chaque paire de mots consécutifs, on regarde quel mot peut venir juste après dans les textes.
+On enregistre ces mots avec leur fréquence (normalisée entre 0 et 1).
+
+La clé du dictionnaire est une chaîne "mot1 mot2", ce qui permet de prédire le mot suivant
+en fonction des deux mots précédents plutôt qu'un seul. Cela permet d'intégrer un contexte dans la prediction.
+
+Pour les mêmes raisons que l'orde 1, on on utilise un boucle for au lieu de Ramda
 ### Nettoyage du texte
 
 Avant de traiter les textes, on les nettoie :
