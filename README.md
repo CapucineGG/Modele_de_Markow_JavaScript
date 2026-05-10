@@ -1,4 +1,4 @@
-# Modèle de Markov appliqué aux textes pour la prédiction de saisie au clavier
+# Modèle de Markov pour la prédiction de mots
 
 ## Description
 
